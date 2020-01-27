@@ -1,29 +1,23 @@
 class DinnerModel{
     constructor(){
         this.numberOfGuests=1;
-        this.subscribers=[]; 
+        this.subscribers=[];
     }
-
     setNumberOfGuests(x){
-        this.numberOfGuests= x  
-        this.notifyObservers({guests:x});
-
+        this.numberOfGuests=x 
+        this.notifyObservers({guests:x});  
     }
     getNumberOfGuests(){
         return this.numberOfGuests;
     }
-
     addObserver(callback){
-        this.subscribers.push(callback);                                           
-    }
-    
-    notifyObservers(whatHappened){
+    	this.subscribers.push(callback);                                                         
+	}
+	notifyObservers(whatHappened){   
         for(let i=0; i<this.subscribers.length; i++){ 
             let callback= this.subscribers[i];
-            callback(whatHappened);
-
-         }
-
-    } 
+            callback(whatHappened);}
+    }
 }
 
+// model view controller
