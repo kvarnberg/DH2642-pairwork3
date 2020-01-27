@@ -4,17 +4,14 @@ class SidebarView{
         this.model=model;
         model.addObserver(x=>this.update(x));
     }
-
     render(){
-        this.root.innerHTML=`
-        <button>-</button>
-        <span>${this.model.getNumberOfGuests()}</span>
-        <button>+</button>`;
+        // const Sidebar=({model})=>h("span", h("button", "+"), this.model.getNumberOfGuests(), h("button", "-"))
+        this.root.innerHTML=`<button id="minusButton"> - </button><span>${this.model.getNumberOfGuests()}</span><button id="plusButton"> + </button>`
     }
-
+    
+    // är det här som klick på button ska uppdatera anta gäster?
     update(whatHappened){
-        if(whatHappened.guests !== undefined){
-            this.root.firstElementChild.nextElementSibling.textContent= whatHappened.guests;
-        }
+            if(whatHappened.guests !== undefined){
+                this.root.firstElementChild.nextSibling.textContent= whatHappened.guests;
+            }
     }
-}
