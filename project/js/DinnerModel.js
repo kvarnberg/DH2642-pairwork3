@@ -18,6 +18,17 @@ class DinnerModel{
             let callback= this.subscribers[i];
             callback(whatHappened);}
     }
+
+    async searchDishes(dishType, freeText) {
+        const response = await fetch(ENDPOINT + "recipes/search?type="+dishType+"&query="+freeText, {
+            "method": "GET",
+            "headers": {
+                'X-Mashape-Key': API_KEY
+            }
+        })
+        const data = await response.json();
+        return data.results;          // leave out the unimportant parts of the response data
+        }
 }
 
 // model view controller
