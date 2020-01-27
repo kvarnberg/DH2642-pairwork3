@@ -1,7 +1,7 @@
 class SidebarController{
     constructor(model, root){
-        this.model=model;
-        this.root=root;
+        new SidebarView(model, root).render();
+
         const plusButton=this.root.lastElementChild;
     
         plusButton.addEventListener("click", function(event){
