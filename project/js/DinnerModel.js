@@ -20,6 +20,8 @@ class DinnerModel{
     }
 
     async searchDishes(dishType, freeText) {
+        console.log(dishType)
+        console.log(freeText)
         const response = await fetch(ENDPOINT + "recipes/search?type="+dishType+"&query="+freeText, {
             "method": "GET",
             "headers": {
