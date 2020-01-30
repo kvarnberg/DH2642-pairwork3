@@ -10,3 +10,11 @@
     .flexParent{display:flex; 
         flex-direction:column; } 
 }
+
+.dishDiv{height:90%; overflow: scroll;}
+
+.spinnerClass{}
+
+.dishDisplay{vertical-align:top; text-align:center; display:inline-block; width:200px; }
+
+.dishDisplay img{display: block; height:100px; margin-left: auto; margin-right: auto;}

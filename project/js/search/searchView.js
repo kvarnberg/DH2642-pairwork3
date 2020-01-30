@@ -25,7 +25,7 @@ class SearchView{
         console.log(this.typeControl)
 
         this.model.searchDishes(this.typeControl.value, this.textControl.value)
-            .then(dishes=> h("div", dishes.map(dish => this.createDishDisplay(dish))).render(this.resultDiv))
+            .then(dishes=> h("div", {className:"dishDiv"}, dishes.map(dish => this.createDishDisplay(dish))).render(this.resultDiv))
             .catch(err=> render(this.resultDiv))
             .finally(()=> render(this.resultDiv));
     }
@@ -36,7 +36,7 @@ class SearchView{
 
     createDishDisplay(dish){
         console.log(dish)
-        return h("span", {class:"dishDisplay"} , dish.title);
+        return h("span", {className:"dishDisplay"}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
         
     }
 }
