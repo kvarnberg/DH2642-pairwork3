@@ -10,7 +10,7 @@ class SearchView{
             	this.typeControl = h("select", 
                     h("option", {value:""}, "Choose:"), 
                     ["starter", "main course", "dessert"].map(opt=>(h("option", {value:opt}, opt)))),
-            	h("button", "Search!") 
+            	h("button", {id:"button"}, "Search!") 
             ),  
        		this.resultDiv= h("div")
        	).render(this.root);
@@ -21,8 +21,6 @@ class SearchView{
     updateSearchResults(){
         const spinner=this.createSpinner();
         spinner.render(this.resultDiv);  // clears this.resultDiv of all its children, i.e. wipes the previous search results. Then adds the spinner
-
-        console.log(this.typeControl)
 
         this.model.searchDishes(this.typeControl.value, this.textControl.value)
             .then(dishes=> h("div", {className:"dishDiv"}, dishes.map(dish => this.createDishDisplay(dish))).render(this.resultDiv))
@@ -35,7 +33,6 @@ class SearchView{
         }
 
     createDishDisplay(dish){
-        console.log(dish)
         return h("span", {className:"dishDisplay"}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
         
     }

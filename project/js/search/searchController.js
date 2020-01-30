@@ -2,6 +2,6 @@ class SearchController{
     constructor(model, root){
         const view= new SearchView(model, root);
 		view.render();
-		root.addEventListener("click", e=>{view.updateSearchResults()});
+		document.getElementById("button").addEventListener("click", e=>{view.updateSearchResults()});		// root.firstElementChild.firstElementChild.firstElementChild.nextElementSibling.nextSibling
     }
 }
