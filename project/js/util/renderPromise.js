@@ -1,10 +1,12 @@
- updateSearchResults(){
-        const spinner=this.createSpinner();
-        spinner.render(this.resultDiv);  // clears this.resultDiv of all its children, i.e. wipes the previous search results. Then adds the spinner
-
-        console.log(this.typeControl)
-
-        this.model.searchDishes(this.typeControl.value, this.textControl.value)
-            .then(dishes=> h("div", {className:"dishDiv"}, dishes.map(dish => this.createDishDisplay(dish))).render(this.resultDiv))
-            .catch(err=> render(this.resultDiv))
-            .finally(()=> render(this.resultDiv));// 
+function renderPromise(promise, hyperscript, node){
+    const spinner=createSpinner();
+    spinner.render(node);  // clears the node first!
+                                                                                                              
+    promise
+    .then(result=>hyperscript(result).render(node))
+    .catch(err=> h("p", "error").render(node))
+    .finally();		// kanske inte behövs, men annars ta bort spinner, func removeChild(spinner)
+}
+function createSpinner(){
+    return h("div", h("img", {src:"https://assets.eu.content-cdn.io/css/themes/mjt02012595/images/main/show_loader.gif"}))
+}
