@@ -2,8 +2,10 @@ class DinnerModel{
     constructor(){
         this.numberOfGuests=1;
         this.subscribers=[];
+        this.dishes=[];
     }
     setNumberOfGuests(x){
+        // do a error thingy
         this.numberOfGuests=x 
         this.notifyObservers({guests:x});  
     }
@@ -27,8 +29,29 @@ class DinnerModel{
             }
         })
         const data = await response.json();
-        return data.results;          // leave out the unimportant parts of the response data
+        return data.results;        
+    }
+
+    async getDishDetails(id){
+        const response = await fetch(ENDPOINT + "recipes/"+id+"/information", {
+            "method": "GET",
+            "headers": {
+                'X-Mashape-Key': API_KEY
+            }
+        })
+        const data = await response.json();
+        return data; 
+
+    }
+    addToMenu(dish){
+        if (this.dishes.includes(dish) == false){
+           this.dishes.push(dish) 
         }
+        else{
+            console.log("already in list")
+        }
+        
+    }
 }
 
 // model view controller

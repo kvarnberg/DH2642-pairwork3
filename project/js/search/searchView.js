@@ -24,10 +24,6 @@ class SearchView{
             dishes=>(h("div", {className:"dishDiv"}, dishes.map(dish => this.createDishDisplay(dish)))),
             this.resultDiv)
     }
-    
-    /*createSpinner(){
-        return h("div", {className:"spinnerClass"}, h("img", {src:"https://assets.eu.content-cdn.io/css/themes/mjt02012595/images/main/show_loader.gif"}))
-    }*/
 
     createDishDisplay(dish){
         return h("span", {className:"dishDisplay"}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
