@@ -27,6 +27,17 @@ class SearchView{
 
     createDishDisplay(dish){
         return h("span", {className:"dishDisplay", id:dish.id, title:dish.title}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
-        
+    }
+
+     isDishRepresentation(clickedNode){
+        if (clickedNode.classList.contains("dishDisplay") && confirm("Add " + clickedNode.title + " to menu?")){
+            return clickedNode.id      
+        }
+        else if(clickedNode.parentNode.classList.contains("dishDisplay") && confirm("Add " + clickedNode.parentNode.title + " to menu?")){  
+            return clickedNode.parentNode.id   
+        }
+        else{
+            return null 
+        }
     }
 }

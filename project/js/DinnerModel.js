@@ -47,14 +47,17 @@ class DinnerModel{
     }
     addToMenu(dish){
         if (this.dishes.includes(dish) == false){
-           this.dishes.push(dish)
+           this.dishes = [dish, ...this.dishes]
            this.notifyObservers({add_dish:dish});  
 
         }
         else{
-            console.log("already in list")
+            throw(Error("Already in menu"))
         }
         
+    }
+    getMenu(){
+        return [...this.dishes]
     }
 }
 
