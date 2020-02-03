@@ -26,7 +26,7 @@ class SearchView{
     }
 
     createDishDisplay(dish){
-        return h("span", {className:"dishDisplay"}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
+        return h("span", {className:"dishDisplay", id:dish.id, title:dish.title}, h("img",{src:"https://spoonacular.com/recipeImages/" + dish.image}), dish.title);
         
     }
 }

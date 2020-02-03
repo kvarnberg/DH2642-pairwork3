@@ -5,9 +5,11 @@ class DinnerModel{
         this.dishes=[];
     }
     setNumberOfGuests(x){
-        // do a error thingy
-        this.numberOfGuests=x 
-        this.notifyObservers({guests:x});  
+        if (x>0){
+            this.numberOfGuests=x 
+            this.notifyObservers({guests:x}); 
+        }
+          
     }
     getNumberOfGuests(){
         return this.numberOfGuests;
@@ -45,7 +47,9 @@ class DinnerModel{
     }
     addToMenu(dish){
         if (this.dishes.includes(dish) == false){
-           this.dishes.push(dish) 
+           this.dishes.push(dish)
+           this.notifyObservers({add_dish:dish});  
+
         }
         else{
             console.log("already in list")
