@@ -31,9 +31,11 @@ class SearchView{
 
      isDishRepresentation(clickedNode){
         if (clickedNode.classList.contains("dishDisplay") && confirm("Add " + clickedNode.title + " to menu?")){
-            return clickedNode.id      
+            // return clickedNode.id; 
+            return clickedNode.id    
         }
         else if(clickedNode.parentNode.classList.contains("dishDisplay") && confirm("Add " + clickedNode.parentNode.title + " to menu?")){  
+            // return clickedNode.parentNode.id;  
             return clickedNode.parentNode.id   
         }
         else{

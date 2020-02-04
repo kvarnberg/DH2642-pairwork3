@@ -46,13 +46,13 @@ class DinnerModel{
 
     }
     addToMenu(dish){
+        dish = dish.id
         if (this.dishes.includes(dish) == false){
            this.dishes = [dish, ...this.dishes]
-           this.notifyObservers({add_dish:dish});  
-
+           this.notifyObservers({add_dish:dish}); 
         }
         else{
-            throw(Error("Already in menu"))
+            console.log("already in menu");
         }
         
     }

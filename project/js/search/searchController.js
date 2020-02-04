@@ -4,14 +4,12 @@ class SearchController{
 		view.render();
 		document.getElementById("button").addEventListener("click", e=>{view.updateSearchResults()});
 
-		root.lastElementChild.firstElementChild.nextElementSibling.addEventListener("click", e=>{view.isDishRepresentation(event.target)});		
-
-		// check that it got string back, isString() ? .then(model.addToMenu(dish))
-		
-		/* if (== "string"){(id =>{
-			model.getDishDetails(id)
-			.then(dish =>{model.addToMenu(dish)})})
-		} */
+		root.lastElementChild.firstElementChild.nextElementSibling.addEventListener("click", e=>{
+			var x = view.isDishRepresentation(event.target); 
+			if (typeof x == "string"){
+				model.getDishDetails(x)
+				.then(dish =>{model.addToMenu(dish)})};
+			})	
     }
    
 }
