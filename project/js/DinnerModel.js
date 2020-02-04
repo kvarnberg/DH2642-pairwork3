@@ -5,11 +5,8 @@ class DinnerModel{
         this.dishes=[];
     }
     setNumberOfGuests(x){
-        if (x>0){
-            this.numberOfGuests=x 
-            this.notifyObservers({guests:x}); 
-        }
-          
+        this.numberOfGuests=x 
+        this.notifyObservers({guests:x}); 
     }
     getNumberOfGuests(){
         return this.numberOfGuests;

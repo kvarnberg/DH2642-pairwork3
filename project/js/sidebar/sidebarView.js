@@ -13,13 +13,19 @@ class SidebarView{
     }
 	render(){
 		// const Sidebar=({model})=>h("span", h("button", "+"), this.model.getNumberOfGuests(), h("button", "-"))
-		this.root.innerHTML=`<button id="minusButton"> - </button><span>${this.model.getNumberOfGuests()}</span><button id="plusButton"> + </button>`
+		//this.root.innerHTML=`<button id="minusButton"> - </button><span>${this.model.getNumberOfGuests()}</span><button id="plusButton"> + </button>`
+        // let q = (this.model.getNumberOfGuests() < 1) ? true : false;
+
+        h("fragment",
+        h("div", 
+        h("button", {id:"minusButton"}, "-"), this.model.getNumberOfGuests(), 
+        h("button", {id:"plusButton"}, "+")),
+        h("div", "new div")        // model.getMenu().sort(/*TODO sort compareFunction */).map(dish=> /* TODO render the dish*/)
+        ).render(this.root);
 	}
-	
-    // är det här som klick på button ska uppdatera anta gäster?
 	update(whatHappened){
             if(whatHappened.guests !== undefined){
-                this.root.firstElementChild.nextSibling.textContent= whatHappened.guests;
+                this.root.firstElementChild.firstElementChild.nextSibling.textContent= whatHappened.guests;
             }
     }
 }
