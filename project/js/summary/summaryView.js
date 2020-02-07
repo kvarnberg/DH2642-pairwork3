@@ -12,4 +12,5 @@ class SummaryView{
                 this.root.firstElementChild.textContent= whatHappened.guests;
             }
         }
+
     }

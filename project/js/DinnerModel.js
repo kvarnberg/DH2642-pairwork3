@@ -39,21 +39,49 @@ class DinnerModel{
             }
         })
         const data = await response.json();
-        return data; 
-
+        return data  // ta ut objekt från promise
     }
+    
+    alreadyInMenu(newDish){
+        const exists=this.dishes.some(dish => newDish.id === dish.id);
+        return exists
+    }
+
     addToMenu(dish){
-        dish = dish.id
-        if (this.dishes.includes(dish) == false){
+        dish.price = dish.extendedIngredients.length
+
+        const exists=this.alreadyInMenu(dish);
+        if (!exists){
            this.dishes = [dish, ...this.dishes]
-           this.notifyObservers({add_dish:dish}); 
+           this.notifyObservers({add_dish:dish});             
         }
         else{
             console.log("already in menu");
         }
-        
     }
+
+    totalPrice(dishes){
+        let totalPrice = 0
+        this.dishes.map(dish=>totalPrice=totalPrice + (dish.price* this.numberOfGuests))
+        return totalPrice
+    }
+
+    filterDishType(dishType){
+        let filtered = dishType.filter(type=> type=="starter" || type=="main course" || type=="dessert")
+        return filtered
+    }
+
     getMenu(){
+        this.dishes.map(dish=> dish.dishTypes=this.filterDishType(dish.dishTypes))
+        this.dishes.sort(function(a,b){
+            if (a.dishTypes[0] < b.dishTypes[0]){
+                return 1
+            } else if (a.dishTypes[0] > b.dishTypes[0]){
+                return -1
+            } else {return 0}
+
+        })
+        
         return [...this.dishes]
     }
 }

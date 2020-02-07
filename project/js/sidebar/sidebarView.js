@@ -4,29 +4,38 @@ class SidebarView{
         this.model=model;
         model.addObserver(x=>this.update(x));
     }
-	render(){
-		// const Sidebar=({model})=>h("span", h("button", "+"), this.model.getNumberOfGuests(), h("button", "-"))
-		//this.root.innerHTML=`<button id="minusButton"> - </button><span>${this.model.getNumberOfGuests()}</span><button id="plusButton"> + </button>`
-        //mutationObserver() kanske kan användas för ändring av textContent
+    render(){
 
         var peeps = this.model.getNumberOfGuests();
-
-        // disabled:(peeps <1) ? {} : true}
+        const disableButton =  peeps <= 1? "true": undefined;
 
         h("fragment",
         h("div", 
-        h("button", {className:"minusButton"}, "-"), 
+        h("button", {className:"minusButton", disabled: disableButton}, "-"), 
         peeps, 
         h("button", {className:"plusButton"}, "+")),
-        h("div", "show dishes here", 
-        h("ul"))        // model.getMenu().sort(/*TODO sort compareFunction */).map(dish=> /* TODO render the dish*/)
-        ).render(this.root);
-	}
+        h("div",
+            h("table",
+                h("tr", h("th", "Title"), h("th", "Price")),
+            this.model.getMenu().map(dish =>(this.dishDisplay(dish)))),
+            h("div", '-----------------'),
+            h("div", 'Total price: ' + this.displayTotalPrice())))
+            .render(this.root);
+    }
+
+    dishDisplay(dish){
+        return h("tr", 
+                h("td", dish.title ),
+                h("td", this.model.getNumberOfGuests()*dish.price))
+    }
+
+    displayTotalPrice(){
+        let dishes = this.model.getMenu()
+        let price = this.model.totalPrice(dishes)
+        return price
+    }
 
 	update(whatHappened){
-        if (whatHappened.guests !== undefined){
-            // this.root.firstElementChild.firstElementChild.nextSibling.textContent = whatHappened.guests;
-            this.render();
-        }
+        this.render()
     }
 }

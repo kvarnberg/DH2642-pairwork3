@@ -5,9 +5,11 @@ class SearchController{
 		document.getElementById("button").addEventListener("click", e=>{view.updateSearchResults()});
 
 		root.lastElementChild.firstElementChild.nextElementSibling.addEventListener("click", e=>{
-			var x = view.isDishRepresentation(event.target); 
-			if (typeof x == "string"){
-				model.getDishDetails(x)
+			
+			var id = view.isDishRepresentation(event.target); 
+			if (typeof id == "string"){
+
+				model.getDishDetails(id)
 				.then(dish =>{model.addToMenu(dish)})};
 			})	
     }
