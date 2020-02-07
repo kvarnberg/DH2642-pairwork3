@@ -18,7 +18,7 @@ class SidebarView{
             h("table",
                 h("tr", h("th", "Title"), h("th", "Price")),
             this.model.getMenu().map(dish =>(this.dishDisplay(dish)))),
-            h("div", '-----------------'),
+            h("div", '___________________'),
             h("div", 'Total price: ' + this.displayTotalPrice())))
             .render(this.root);
     }

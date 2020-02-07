@@ -48,7 +48,8 @@ class DinnerModel{
     }
 
     addToMenu(dish){
-        dish.price = dish.extendedIngredients.length
+        let dishAmount = dish.extendedIngredients.map(p => p.amount)
+        dish.price = dishAmount.reduce(function(a, b) { return a + b; }, 0)
 
         const exists=this.alreadyInMenu(dish);
         if (!exists){
@@ -84,6 +85,25 @@ class DinnerModel{
         
         return [...this.dishes]
     }
+
+    getIngredients(){
+        let ingList = []
+        let ingredients= this.dishes.map(dish=>dish.extendedIngredients)
+                
+        ingredients.forEach(function(item){
+            item.forEach(function(i){
+                let new_ing = [i.name, i.amount, i.aisle]
+                ingList.push(new_ing)
+            })
+        })
+
+    }
+
+    checkDuplicateIngredient(ingList, name){
+        console.log('function test')
+        
+
+    }
 }
 
-// model view controller
+
