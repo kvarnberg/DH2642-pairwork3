@@ -3,6 +3,7 @@ class DinnerModel{
         this.numberOfGuests=1;
         this.subscribers=[];
         this.dishes=[];
+        this.ingList=[];
     }
     setNumberOfGuests(x){
         this.numberOfGuests=x 
@@ -44,6 +45,7 @@ class DinnerModel{
     
     alreadyInMenu(newDish){
         const exists=this.dishes.some(dish => newDish.id === dish.id);
+
         return exists
     }
 
@@ -80,30 +82,30 @@ class DinnerModel{
             } else if (a.dishTypes[0] > b.dishTypes[0]){
                 return -1
             } else {return 0}
-
         })
-        
         return [...this.dishes]
     }
 
     getIngredients(){
-        let ingList = []
         let ingredients= this.dishes.map(dish=>dish.extendedIngredients)
                 
-        ingredients.forEach(function(item){
-            item.forEach(function(i){
-                let new_ing = [i.name, i.amount, i.aisle]
-                ingList.push(new_ing)
-            })
-        })
-
+        ingredients.map(item => item.map(i =>{
+                ethis.alreadyInIngredients(i);
+            }))
+        return this.ingList
     }
 
-    checkDuplicateIngredient(ingList, name){
-        console.log('function test')
-        
-
+    alreadyInIngredients(new_ing){
+       const exists = this.ingList.some(ing => new_ing.id === ing.id);
+       if (!exists){
+            this.ingList = [new_ing, ...this.ingList]
+       }
+       else{
+            // add amounts together here
+            let ing = this.ingList.find(ing => ing.id === new_ing.id);
+            ing.amount = ing.amount+new_ing.amount
+       }  
     }
+
 }
-
 
