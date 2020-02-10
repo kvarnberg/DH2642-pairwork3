@@ -1,7 +1,8 @@
 class SidebarView{
-	constructor(model, root){
+	constructor(model, root, onDeleteClicked){
         this.root=root;
         this.model=model;
+        this.onDeleteClicked=onDeleteClicked;
         model.addObserver(x=>this.update(x));
     }
     render(){
@@ -27,7 +28,7 @@ class SidebarView{
         return h("tr", 
                 h("td", dish.title ),
                 h("td", (this.model.getNumberOfGuests()*dish.price).toFixed(1)),
-                h("button", {id: 'deleteButton'}, 'x'))
+                h("button", {onClick: event=>this.onDeleteClicked(dish)}, 'x'))
     }
 
     displayTotalPrice(){

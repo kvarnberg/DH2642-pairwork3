@@ -1,6 +1,6 @@
 class SidebarController{
     constructor(model, root){
-        new SidebarView(model, root).render();
+        new SidebarView(model, root, dish=>model.remove(dish)).render();
         
         /*const plusButton= document.getElementById("plusButton"); 			// document.getElementById("plusButton");
 		plusButton.addEventListener("click", function(event){
