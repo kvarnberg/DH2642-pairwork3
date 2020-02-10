@@ -3,7 +3,7 @@ class DinnerModel{
         this.numberOfGuests=1;
         this.subscribers=[];
         this.dishes=[];
-        this.ingList=[];
+        
     }
     setNumberOfGuests(x){
         this.numberOfGuests=x 
@@ -87,25 +87,26 @@ class DinnerModel{
     }
 
     getIngredients(){
+        let shopList = []
         let ingredients= this.dishes.map(dish=>dish.extendedIngredients)
-                
-        ingredients.map(item => item.map(i =>{
-                ethis.alreadyInIngredients(i);
-            }))
-        return this.ingList
-    }
+        ingredients.map(item => item.map( ingr=> {
+            
+            let x = shopList.find(old_ing=> old_ing.name == ingr.name)
+            if(x!=undefined) {
+                x.amount += ingr.amount
+            }
+            else {
+                let new_ingr = {}
+                new_ingr.name = ingr.name
+                new_ingr.amount = ingr.amount
+                new_ingr.aisle = ingr.aisle
+                shopList.push(new_ingr)
+                //this.notifyObservers({add_ingr :ingr})
+            }
 
-    alreadyInIngredients(new_ing){
-       const exists = this.ingList.some(ing => new_ing.id === ing.id);
-       if (!exists){
-            this.ingList = [new_ing, ...this.ingList]
-       }
-       else{
-            // add amounts together here
-            let ing = this.ingList.find(ing => ing.id === new_ing.id);
-            ing.amount = ing.amount+new_ing.amount
-       }  
+        }))
+        return shopList
     }
-
 }
+
 

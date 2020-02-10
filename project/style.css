@@ -5,11 +5,13 @@
     font-size: 15px;
 }
 
-.flexParent{flex:1; display:flex;  flex-direction: row; height: 75%;}
+.flexParent{flex:1; display:flex;  flex-direction: row; height: 70%;}
 
 .sidebar{flex:none; width:150px; overflow:scroll;} 
 
 .mainContent{width: 100%;}
+
+.summary{height:25%; overflow:scroll}
 
 @media (max-width:20px){  
     .flexParent{display:flex; 
