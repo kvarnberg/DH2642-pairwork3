@@ -97,15 +97,21 @@ class DinnerModel{
             }
             else {
                 let new_ingr = {}
+                new_ingr.aisle = ingr.aisle
                 new_ingr.name = ingr.name
                 new_ingr.amount = ingr.amount
-                new_ingr.aisle = ingr.aisle
                 shopList.push(new_ingr)
                 //this.notifyObservers({add_ingr :ingr})
             }
 
         }))
-        return shopList
+        return shopList.sort(function(a,b){
+            if (a.aisle < b.aisle){
+                return -1
+            } else if (a.aisle > b.aisle){
+                return 1
+            } else {return 0 }
+        })
     }
 }
 
