@@ -11,7 +11,7 @@
 
 .mainContent{width: 100%;}
 
-.summary{height:25%; overflow:scroll}
+.hide{display:none;}
 
 @media (max-width:20px){  
     .flexParent{display:flex; 
@@ -22,6 +22,6 @@
 
 .spinnerClass{}
 
-.dishDisplay{vertical-align:top; text-align:center; display:inline-block; width:200px; }
+.dishDisplay{vertical-align:top; text-align:center; display:inline-block; width:200px;}
 
 .dishDisplay img{display: block; height:100px; margin-left: auto; margin-right: auto;}

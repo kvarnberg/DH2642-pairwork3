@@ -1,7 +1,9 @@
 class SearchView{
-	constructor(model, root){
+	constructor(model, root, whenDone){
         this.root=root;
         this.model=model;
+        this.doneCallback=whenDone[0];
+        this.doneMessage=whenDone[1];
     }
     render(){
     	h("div",
@@ -10,8 +12,9 @@ class SearchView{
             	this.typeControl = h("select", 
                     h("option", {value:""}, "Choose:"), 
                     ["starter", "main course", "dessert"].map(opt=>(h("option", {value:opt}, opt)))),
-            	h("button", {id:"button"}, "Search!") 
-            ),  
+            	h("button", {id:"button"}, "Search!"),
+                h("button", {onClick: event=>show("summary"), style:"float:right"}, "Show summary")
+            ),
        		this.resultDiv= h("div")
        	).render(this.root);
 

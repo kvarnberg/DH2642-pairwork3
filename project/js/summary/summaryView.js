@@ -7,6 +7,7 @@ class SummaryView{
         render(){
             h("div",
                 h("div", "Dinner for " + this.model.getNumberOfGuests() + ' people'),
+                h("button", {onClick: event=>show("search"), style:"float:right"}, "Back to search"),
                 h("table", {border:1},
                     h("tr",
                         h("th", "Menu :"),h("th", "Shoppinglist :"), h("th", "Total price :")),
