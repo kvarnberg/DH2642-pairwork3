@@ -2,7 +2,7 @@ class SummaryView{
 	constructor(model, root){
         this.root=root;
         this.model=model;
-        model.addObserver(x=>this.update(x));
+        // model.addObserver(x=>this.update(x));
         }
         render(){
             h("div",
