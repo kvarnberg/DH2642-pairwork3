@@ -1,7 +1,7 @@
 class SummaryController{
     constructor(model, root, whenDone){
-		const update= ()=> h(SummaryView, {model}).render(root);  
+		const update= ()=> h(SummaryView, {ingredients: model.getIngredients(), guests: model.getNumberOfGuests()}).render(root);  
 		model.addObserver(update);
-      	update();  // initial rendering
+      	update(); 
     }
 }
