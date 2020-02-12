@@ -27,14 +27,14 @@ class SidebarView{
     dishDisplay(dish){
         return h("tr", 
                 h("td", dish.title ),
-                h("td", (this.model.getNumberOfGuests()*dish.price).toFixed(1)),
+                h("td", (this.model.getNumberOfGuests()*dish.price).toFixed(2)),
                 h("button", {onClick: event=>this.onDeleteClicked(dish)}, 'x'))
     }
 
     displayTotalPrice(){
         let dishes = this.model.getMenu()
         let price = this.model.totalPrice(dishes)
-        return price.toFixed(1)
+        return price.toFixed(2)
     }
 
 	update(whatHappened){

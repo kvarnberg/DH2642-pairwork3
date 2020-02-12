@@ -1,6 +1,6 @@
-function SummaryView({ingredients, guests}){
+function SummaryView({ingredients, guests,  whenDone:[doneCallback, doneMessage]}){
     return h("div",
-            h("button", {onClick: event=>show("search"), style:"float:right"}, "Back to search"),
+            h("button", {onClick: doneCallback, label:doneMessage, style:"float:right"}, "Back to search"),
                 h("div", "Dinner for " + guests + ' people'),
                 h("table", {border:1},
                     h("tr",
@@ -17,12 +17,12 @@ function SummaryView({ingredients, guests}){
         }
 
         function displayShopping(item){
-            return h("li", (item.amount*guests).toFixed(1)+' ' + item.name + ' (' + item.aisle + ')')
+            return h("li", (item.amount*guests).toFixed(2)+' ' + item.name + ' (' + item.aisle + ')')
         }
 
         function displayTotalPrice(){
             let dishes = model.getMenu()
             let price = model.totalPrice(dishes)
-            return price.toFixed(1)
+            return price.toFixed(2)
         }
 }
