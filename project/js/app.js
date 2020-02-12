@@ -4,7 +4,7 @@ function onModelChange(payload){
 	document.body.textContent= payload.guests;}
 
 new SidebarController(model, document.body.querySelector("#sidebar"));
-new SummaryController(model, document.body.querySelector("#summary"));
+// new SummaryController(model, document.body.querySelector("#summary"));
 // new SearchController(model, document.body.querySelector("#search"));
 
 
@@ -22,3 +22,4 @@ const summaryNav=[()=> show("summary"), "Summary"];
 const backToSearch=[()=> show("search"), "Back to search"];
 
 new SearchController(model, document.body.querySelector("#search"), summaryNav)
+new SummaryController(model, document.body.querySelector("#summary"), backToSearch);

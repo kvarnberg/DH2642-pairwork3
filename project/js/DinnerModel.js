@@ -115,7 +115,7 @@ class DinnerModel{
     }
 
     remove(dish) {
-        this.dishes = this.dishes.filter(function(obj) {
+        this.dishes = this.dishes.filter(function(obj){
             return obj.id !== dish.id});
         this.notifyObservers({remove_dish:dish});
     }
