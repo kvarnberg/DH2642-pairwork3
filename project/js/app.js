@@ -7,10 +7,8 @@ new SidebarController(model, document.body.querySelector("#sidebar"));
 // new SummaryController(model, document.body.querySelector("#summary"));
 // new SearchController(model, document.body.querySelector("#search"));
 
-
 // TW3
-
-const sections=["search", "summary"]
+const sections=["search", "summary", "details"]
 
 function show(section){
 	let sec = sections.filter(s=> s !== section);
@@ -18,16 +16,19 @@ function show(section){
 	document.body.querySelector("#"+section).classList.remove("hide")
 	window.location.hash = "#"+section
 }
-
 if (!window.location.hash){
 	window.location.hash = "#search";
 }
-
 window.onhashchange = () => show(window.location.hash.substring(1))
 
 const summaryNav=[()=> show("summary"), "Summary"];
 const backToSearch=[()=> show("search"), "Back to search"];
 
-new SearchController(model, document.body.querySelector("#search"), summaryNav)
-new SummaryController(model, document.body.querySelector("#summary"), backToSearch);
+const addToMenu=[()=> show("search"), "Add to menu"];
+const details= new DishDetailsContainer(model, document.body.querySelector("#details"), addToMenu, backToSearch);
 
+new SearchController(model, document.body.querySelector("#search"), summaryNav,id=>{
+	details.render(id); 
+	show("details");
+});
+new SummaryController(model, document.body.querySelector("#summary"), backToSearch);
