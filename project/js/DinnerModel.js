@@ -3,7 +3,7 @@ class DinnerModel{
         this.numberOfGuests=1;
         this.subscribers=[];
         this.dishes=[];
-        
+        // getItem local
     }
     setNumberOfGuests(x){
         this.numberOfGuests=x 

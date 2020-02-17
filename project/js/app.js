@@ -1,11 +1,11 @@
+const modelString= localStorage.getItem("dinnerModel");
+
 const model= new DinnerModel();  
                                                
 function onModelChange(payload){
 	document.body.textContent= payload.guests;}
 
 new SidebarController(model, document.body.querySelector("#sidebar"));
-// new SummaryController(model, document.body.querySelector("#summary"));
-// new SearchController(model, document.body.querySelector("#search"));
 
 // TW3
 const sections=["search", "summary", "details"]
@@ -33,3 +33,5 @@ new SearchController(model, document.body.querySelector("#search"), summaryNav,i
 	show("details");
 });
 new SummaryController(model, document.body.querySelector("#summary"), backToSearch);
+
+model.addObserver(()=> localStorage.setItem("dinnerModel", JSON.stringify({guests: model.getNumberOfGuests(), dishes: model.getMenu()}))); 
