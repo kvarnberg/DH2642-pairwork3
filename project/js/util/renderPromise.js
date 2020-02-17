@@ -4,7 +4,7 @@ function renderPromise(promise, hyperscript, node){
                                                                                                               
     promise
     .then(result=>hyperscript(result).render(node))
-    .catch(err=> h("p", "error").render(node))
+    .catch(err=> h("p", "error"+err).render(node))
     .finally();		// kanske inte behövs, men annars ta bort spinner, func removeChild(spinner), node.removeChild(child);
 }
 function createSpinner(){

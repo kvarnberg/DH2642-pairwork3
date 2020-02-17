@@ -13,6 +13,7 @@ const sections=["search", "summary", "details"]
 function show(section){
 	let sec = sections.filter(s=> s !== section);
 	document.body.querySelector("#"+sec[0]).classList.add("hide")
+	document.body.querySelector("#"+sec[1]).classList.add("hide")
 	document.body.querySelector("#"+section).classList.remove("hide")
 	window.location.hash = "#"+section
 }

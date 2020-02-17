@@ -59,7 +59,7 @@ class DinnerModel{
            this.notifyObservers({add_dish:dish});             
         }
         else{
-            console.log("already in menu");
+            alert("Dish already in menu.")
         }
     }
 
@@ -67,6 +67,11 @@ class DinnerModel{
         let totalPrice = 0
         this.dishes.map(dish=>totalPrice=totalPrice + (dish.price* this.numberOfGuests))
         return totalPrice
+    }
+
+    getPrice(dish){
+        let dishAmount = dish.extendedIngredients.map(p => p.amount)
+        return dishAmount.reduce(function(a, b) { return a + b; }, 0)
     }
 
     filterDishType(dishType){
