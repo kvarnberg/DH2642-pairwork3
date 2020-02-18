@@ -110,6 +110,7 @@ class DinnerModel{
             }
 
         }))
+        // flytta sorteringen till view
         return shopList.sort(function(a,b){
             if (a.aisle < b.aisle){
                 return -1

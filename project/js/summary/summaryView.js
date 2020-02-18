@@ -4,12 +4,15 @@ function SummaryView({ingredients, guests,  whenDone:[doneCallback, doneMessage]
                 h("div", "Dinner for " + guests + ' people'),
                 h("table", {border:1},
                     h("tr",
-                        h("th", "Menu :"),h("th", "Shoppinglist :"), h("th", "Total price :")),
+                        h("th", "Menu :"),h("th", "Shoppinglist :"), h("th", "Aisle :"), h("th", "Total price :")),
                     h("tr",
                         h("td", model.getMenu().map(dish =>(displayMenu(dish)))),
                         h("td", ingredients.map(ing => (displayShopping(ing)))),
-                        h("td", displayTotalPrice())))
-            )
+                        h("td", ingredients.map(ing => (h("li", ing.aisle)))),
+                        h("td", displayTotalPrice())
+                        )
+                    )
+                )
 
         function displayMenu(dish){
             return h("li", h("a", {href:dish.sourceUrl}, dish.title))
@@ -17,7 +20,7 @@ function SummaryView({ingredients, guests,  whenDone:[doneCallback, doneMessage]
         }
 
         function displayShopping(item){
-            return h("li", (item.amount*guests).toFixed(2)+' ' + item.name + ' (' + item.aisle + ')')
+            return h("li", (item.amount*guests).toFixed(2)+' ' + item.name)
         }
 
         function displayTotalPrice(){
