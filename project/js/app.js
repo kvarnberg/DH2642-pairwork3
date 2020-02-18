@@ -1,7 +1,13 @@
 const modelString= localStorage.getItem("dinnerModel");
-
-const model= new DinnerModel();  
-                                               
+let model
+if (modelString !== "undefined"){
+	const modelObject = JSON.parse(modelString)
+	model = new DinnerModel(modelObject.guests, modelObject.dishes)
+}
+else{
+	model = new DinnerModel()
+}
+                                             
 function onModelChange(payload){
 	document.body.textContent= payload.guests;}
 

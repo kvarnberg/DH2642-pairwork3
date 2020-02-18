@@ -1,8 +1,8 @@
 class DinnerModel{
-    constructor(){
-        this.numberOfGuests=1;
+    constructor(guests=1, dishes=[]){
+        this.numberOfGuests=guests;
         this.subscribers=[];
-        this.dishes=[];
+        this.dishes=dishes;
         // getItem local
     }
     setNumberOfGuests(x){
