@@ -1,6 +1,6 @@
 const modelString= localStorage.getItem("dinnerModel");
 let model
-if (modelString !== "undefined"){
+if (modelString){
 	const modelObject = JSON.parse(modelString)
 	model = new DinnerModel(modelObject.guests, modelObject.dishes)
 }
