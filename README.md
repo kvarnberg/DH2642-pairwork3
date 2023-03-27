@@ -11,3 +11,5 @@ git push -u week2 master
 Now you will by default be pushing here instead of your week1 repository, but you could still push to it with "git push origin". 
 
 Of course, you can also just clone this repository and copy the files over.
+
+AUHTORS: Josephine Kvarnberg, Julia Huang
